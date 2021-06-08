@@ -13,14 +13,20 @@ source:
 build:
   number: 0
   noarch: python
+  entry_points:
+    - pip-compile = piptools.scripts.compile:cli
+    - pip-sync = piptools.scripts.sync:cli
   script: {{ PYTHON }} -m pip install . -vv --no-deps
 
 requirements:
   host:
     - python
     - pip
+    - setuptools_scm
   run:
     - python
+    - click
+    - pep517
 
 test:
   requires:
